@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [useVideo, setUseVideo] = useState(false);
+  const [useVideo] = useState(false);
 
   useEffect(() => {
     if (!useVideo) {
