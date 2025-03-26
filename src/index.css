@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+@import "tailwindcss";
+
+@layer utilities {
+  .font-handwritten {
+    font-family: "Caveat", cursive;
+  }
+
+  /* Custom animation for text transition */
+  .animate-text-transition {
+    animation: fadeSlideIn 0.5s ease-in-out;
+  }
+
+  /* Custom overlay slide-up animation */
+  .overlay-slide-up {
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .group:hover .overlay-slide-up {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
