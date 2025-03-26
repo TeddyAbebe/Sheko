@@ -31,7 +31,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed w-full z-10 transition-all duration-300 px-20 ${
+      className={`fixed w-full z-10 transition-all duration-300 sm:px-20 ${
         isScrolled ? "bg-black/50 z-50 backdrop-blur-[60px]" : "bg-transparent"
       }`}
     >
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
 
         {/* Hamburger Menu (Mobile) */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="md:hidden text-white focus:outline-none"
           onClick={toggleMobileMenu}
         >
           <svg

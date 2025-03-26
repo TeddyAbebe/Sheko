@@ -118,7 +118,7 @@ const Hero: React.FC = () => {
 
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
-      <div className="relative ml-40 container mx-auto px-4 flex flex-col items-start justify-center h-full">
+      <div className="relative sm:ml-40 container mx-auto px-4 flex flex-col items-start justify-center h-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide + (useVideo ? "video" : "")}
@@ -152,7 +152,7 @@ const Hero: React.FC = () => {
 
       {!useVideo && (
         <>
-          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
+          <div className="absolute left-4 top-[90%] sm:top-1/2 transform -translate-y-1/2 z-10">
             <button
               onClick={prevSlide}
               className="text-white hover:text-yellow-500 border cursor-pointer hover:bg-black/50 p-4 rounded-full"
@@ -161,7 +161,7 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
+          <div className="absolute right-4 top-[90%] sm:top-1/2 transform -translate-y-1/2 z-10">
             <button
               onClick={nextSlide}
               className="text-white hover:text-yellow-500 border cursor-pointer hover:bg-black/50 p-4 rounded-full"
