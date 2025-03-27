@@ -58,6 +58,7 @@ const Services: React.FC = () => {
 
   return (
     <section
+      id="services"
       className="py-16 relative"
       style={{
         backgroundImage: `url(${BackgroundImage})`,

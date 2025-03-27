@@ -1,6 +1,5 @@
 // src/components/Header.tsx
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import ShekoLogo from "../assets/ShekoLogo.jpg"; // Import the logo
 
 const Header: React.FC = () => {
@@ -31,51 +30,57 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed w-full z-10 transition-all duration-300 sm:px-20 ${
-        isScrolled ? "bg-black/50 z-50 backdrop-blur-[60px]" : "bg-transparent"
+      className={`fixed w-full md:px-20 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/50 backdrop-blur-[60px]" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link
-          to="/"
+        <a
+          href="#home"
           className="flex items-center gap-2 text-white font-semibold"
         >
           <img
             src={ShekoLogo}
             alt="Sheko Coffee Union Logo"
-            className="h-12 w-auto rounded-full"
+            className="h-10 w-auto rounded-full"
           />
-          Sheko Coffee Union
-        </Link>
+          <span className="text-lg">Sheko Coffee Union</span>
+        </a>
 
         {/* Navigation Links (Desktop) */}
-        <nav className="hidden md:flex space-x-6">
-          <Link to="/" className={`text-white`}>
+        <nav className="hidden md:flex space-x-8">
+          <a
+            href="#home"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
+          >
             Home
-          </Link>
-          <Link to="/about" className={`text-white`}>
+          </a>
+          <a
+            href="#about"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
+          >
             About
-          </Link>
-          <Link to="/services" className={`text-white`}>
+          </a>
+          <a
+            href="#services"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
+          >
             Services
-          </Link>
-          <Link to="/products" className={`text-white`}>
+          </a>
+          <a
+            href="#products"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
+          >
             Products
-          </Link>
-
-          <Link to="/contact" className={`text-white`}>
+          </a>
+          <a
+            href="#contact"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
+          >
             Contact
-          </Link>
+          </a>
         </nav>
-
-        {/* Contact Button (Desktop) */}
-        <Link
-          to="/contact"
-          className="hidden md:block bg-green-900 opacity-100 font-semibold text-white px-4 py-2 rounded-md"
-        >
-          Contact Us
-        </Link>
 
         {/* Hamburger Menu (Mobile) */}
         <button
@@ -107,51 +112,44 @@ const Header: React.FC = () => {
       <div
         className={`md:hidden ${
           isMobileMenuOpen ? "block" : "hidden"
-        } bg-black text-white transition-all duration-300`}
+        } bg-black/90 text-white transition-all duration-300`}
       >
-        <nav className="flex flex-col items-center space-y-4 py-4">
-          <Link
-            to="/"
-            className="text-white hover:text-green"
+        <nav className="flex flex-col items-center space-y-4 py-6">
+          <a
+            href="#home"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
             onClick={toggleMobileMenu}
           >
             Home
-          </Link>
-          <Link
-            to="/about"
-            className="text-white hover:text-green"
+          </a>
+          <a
+            href="#about"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
             onClick={toggleMobileMenu}
           >
             About
-          </Link>
-          <Link
-            to="/services"
-            className="text-white hover:text-green"
+          </a>
+          <a
+            href="#services"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
             onClick={toggleMobileMenu}
           >
             Services
-          </Link>
-          <Link
-            to="/products"
-            className="text-white hover:text-green"
+          </a>
+          <a
+            href="#products"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
             onClick={toggleMobileMenu}
           >
             Products
-          </Link>
-          <Link
-            to="/contact"
-            className="text-white hover:text-green"
+          </a>
+          <a
+            href="#contact"
+            className="text-white hover:text-yellow-500 transition-colors duration-300"
             onClick={toggleMobileMenu}
           >
             Contact
-          </Link>
-          <Link
-            to="/contact"
-            className="bg-green text-white px-4 py-2 rounded-md hover:bg-green-700"
-            onClick={toggleMobileMenu}
-          >
-            Contact Us
-          </Link>
+          </a>
         </nav>
       </div>
     </header>

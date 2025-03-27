@@ -34,9 +34,12 @@ const statsData = [
   },
 ];
 
-const Stats: React.FC = () => {
+const About: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section
+      id="about"
+      className="py-16 bg-gradient-to-b from-gray-50 to-white"
+    >
       <div className="container mx-auto px-4">
         <motion.h2
           className="font-handwritten text-3xl md:text-4xl font-bold text-center text-green mb-12"
@@ -102,4 +105,4 @@ const Stats: React.FC = () => {
   );
 };
 
-export default Stats;
+export default About;

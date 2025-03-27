@@ -90,7 +90,10 @@ const Hero: React.FC = () => {
     : slideContent[currentSlide];
 
   return (
-    <section className="h-screen relative flex items-center justify-center">
+    <section
+      id="home"
+      className="h-screen relative flex items-center justify-center"
+    >
       {useVideo ? (
         <video
           className="absolute inset-0 w-full h-full object-cover"
