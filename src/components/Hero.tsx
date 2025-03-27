@@ -1,7 +1,5 @@
-// src/components/Hero.tsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
 import { IoArrowRedoOutline, IoArrowUndoOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import Image1 from "../assets/the-tropical-rain-forest.jpg";
@@ -140,12 +138,25 @@ const Hero: React.FC = () => {
         </AnimatePresence>
 
         <Link
-          to="/products"
-          className="flex items-center bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+          to=""
+          className="flex items-center bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 shadow-md hover:shadow-lg"
         >
           Discover Our Coffee
-          <span className="ml-2 bg-yellow-500 rounded-full p-2">
-            <FaArrowRight className="text-black" />
+          <span className="ml-2 bg-white rounded-full p-2">
+            <svg
+              className="w-4 h-4 text-black"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </span>
         </Link>
       </div>

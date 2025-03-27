@@ -77,7 +77,7 @@ const Stats: React.FC = () => {
                   <div className="flex justify-end">
                     <button className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
                       <svg
-                        className="w-6 h-6 text-black"
+                        className="w-4 h-4 text-white font-extrabold"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
