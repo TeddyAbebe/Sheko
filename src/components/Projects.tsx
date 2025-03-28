@@ -1,4 +1,3 @@
-// src/components/Projects.tsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BackgroundImage from "../assets/GreenCoffee.jpg";
@@ -12,55 +11,53 @@ const Projects: React.FC = () => {
   const projects = [
     {
       src: BeansAfrica,
-      alt: "Beans from Africa",
-      title: "Beans from Africa",
+      alt: "Sheko region sourcing",
+      title: "Sheko Region Sourcing",
       description:
-        "Premium African coffee beans harvested with traditional methods.",
+        "Sourcing coffee exclusively from the Sheko region, spanning 95,000 hectares, where coffee originated.",
     },
     {
       src: Coffee1,
-      alt: "Fresh Coffee",
-      title: "Fresh Coffee",
-      description: "Hand-picked coffee beans for the best aroma and taste.",
+      alt: "Hand-harvesting",
+      title: "Hand-Harvesting",
+      description:
+        "Farmers harvest only ripe fruit, ensuring the highest quality during the picking season.",
     },
     {
       src: Coffee2,
-      alt: "Coffee Drying",
-      title: "Coffee Drying",
+      alt: "Sun-drying process",
+      title: "Sun-Drying Process",
       description:
-        "Sun-dried coffee beans for a richer and more authentic flavor.",
+        "Harvested coffees are sun-dried on 1m-high beds until the moisture content reaches 10-12%.",
     },
     {
       src: GreenCoffeeBeans,
-      alt: "Green Coffee Beans",
-      title: "Green Coffee Beans",
+      alt: "Quality inspection",
+      title: "Quality Inspection",
       description:
-        "Unroasted green coffee beans, packed with antioxidants and health benefits.",
+        "Professional quality inspectors sort ripe, healthy cherries from immature ones.",
     },
     {
       src: EthiopianCoffeeForest,
-      alt: "Ethiopian Coffee Forest",
-      title: "Ethiopian Coffee Forest",
+      alt: "Amora Gedel forest",
+      title: "Amora Gedel Forest",
       description:
-        "Wild coffee plants growing in the lush Ethiopian highlands.",
+        "Harvesting wild Arabica coffee from the 3,000-hectare Amora Gedel forest, the cradle of coffee.",
     },
   ];
 
-  // State for mobile card index
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
-  // Automatic sliding for mobile
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCardIndex((prevIndex) =>
         prevIndex === projects.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [projects.length]);
 
-  // Animation variants for heading with letter-by-letter effect
   const headingVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -76,7 +73,6 @@ const Projects: React.FC = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  // Underline animation
   const underlineVariants = {
     hidden: { width: 0 },
     visible: {
@@ -85,27 +81,25 @@ const Projects: React.FC = () => {
     },
   };
 
-  // Project card variants with closer positioning and Polaroid-style tilts
   const cardVariants = {
     hidden: {
       opacity: 0,
-      x: 200, // Start far off to the right
-      rotate: 10, // Initial tilt
+      x: 200,
+      rotate: 10,
     },
     visible: (i: number) => {
       const totalCards = projects.length;
       const centerIndex = Math.floor(totalCards / 2);
-      const maxSpread = 50; // Reduced spread for closer positioning (in pixels)
-      const verticalSpread = 20; // Reduced vertical spread for closer positioning
+      const maxSpread = 50;
+      const verticalSpread = 20;
 
-      // Define specific tilts for each card to match the Polaroid style
-      const tilts = [-10, 8, -12, 10, -8]; // Custom tilts for 5 cards
+      const tilts = [-10, 8, -12, 10, -8];
 
       return {
         opacity: 1,
-        x: (i - centerIndex) * maxSpread, // e.g., -100, -50, 0, 50, 100 for 5 cards
-        y: (i % 2 === 0 ? -1 : 1) * verticalSpread, // Alternates -20, 20
-        rotate: tilts[i] || 0, // Apply specific tilt for each card
+        x: (i - centerIndex) * maxSpread,
+        y: (i % 2 === 0 ? -1 : 1) * verticalSpread,
+        rotate: tilts[i] || 0,
         transition: {
           duration: 0.8,
           ease: "easeOut",
@@ -115,15 +109,14 @@ const Projects: React.FC = () => {
     },
     hover: {
       scale: 1.05,
-      rotate: 0, // Straighten on hover
+      rotate: 0,
       zIndex: 10,
       transition: { duration: 0.3 },
     },
   };
 
-  // Mobile sliding variants
   const mobileCardVariants = {
-    hidden: { opacity: 0, x: 100 }, // Slide in from right
+    hidden: { opacity: 0, x: 100 },
     visible: {
       opacity: 1,
       x: 0,
@@ -133,24 +126,22 @@ const Projects: React.FC = () => {
       opacity: 0,
       x: -100,
       transition: { duration: 0.8, ease: "easeOut" },
-    }, // Slide out to left
+    },
   };
 
-  // Dot animation variants
   const dotVariants = {
     active: {
       scale: 1.2,
-      backgroundColor: "#FFD700", // Yellow for active dot
+      backgroundColor: "#FFD700",
       transition: { duration: 0.3 },
     },
     inactive: {
       scale: 1,
-      backgroundColor: "#FFFFFF", // White for inactive dots
+      backgroundColor: "#FFFFFF",
       transition: { duration: 0.3 },
     },
   };
 
-  // Coffee bean particle variants
   const coffeeBeanVariants = {
     animate: {
       y: [0, -30, 0],
@@ -166,6 +157,7 @@ const Projects: React.FC = () => {
 
   return (
     <section
+      id="projects"
       className="py-16 relative overflow-hidden text-white"
       style={{
         backgroundImage: `url(${BackgroundImage})`,
@@ -174,10 +166,8 @@ const Projects: React.FC = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Blurred Overlay */}
       <div className="absolute inset-0 backdrop-blur-md bg-black/60"></div>
 
-      {/* Floating Coffee Bean Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
@@ -196,7 +186,6 @@ const Projects: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        {/* Heading */}
         <motion.div
           className="text-center mb-8 sm:mb-12"
           initial="hidden"
@@ -207,7 +196,7 @@ const Projects: React.FC = () => {
             className="font-handwritten text-3xl sm:text-4xl md:text-5xl font-bold leading-tight relative inline-block"
             variants={headingVariants}
           >
-            {"Latest Projects".split("").map((char, index) => (
+            {"Our Coffee Journey".split("").map((char, index) => (
               <motion.span key={index} variants={letterVariants}>
                 {char}
               </motion.span>
@@ -219,9 +208,7 @@ const Projects: React.FC = () => {
           </motion.h2>
         </motion.div>
 
-        {/* Projects Container */}
         <div className="relative flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] px-4 py-6">
-          {/* Mobile View: Show one card at a time with sliding and dots */}
           <div className="sm:hidden w-full flex flex-col items-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -238,12 +225,10 @@ const Projects: React.FC = () => {
                     alt={projects[currentCardIndex].alt}
                     className="w-full h-40 object-cover"
                   />
-                  {/* Glow Effect */}
                   <motion.div
                     className="absolute inset-0 rounded-t-xl shadow-[0_0_20px_rgba(255,215,0,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ filter: "blur(10px)" }}
                   />
-                  {/* Overlay */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent"
                     initial={{ opacity: 0.6 }}
@@ -262,7 +247,6 @@ const Projects: React.FC = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Pagination Dots */}
             <div className="flex gap-2 mt-4">
               {projects.map((_, index) => (
                 <motion.div
@@ -275,7 +259,6 @@ const Projects: React.FC = () => {
             </div>
           </div>
 
-          {/* Desktop/Tablet View: Show all cards with Polaroid-style tilts */}
           <div className="hidden sm:flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -294,12 +277,10 @@ const Projects: React.FC = () => {
                     alt={project.alt}
                     className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
-                  {/* Glow Effect */}
                   <motion.div
                     className="absolute inset-0 rounded-t-xl shadow-[0_0_20px_rgba(255,215,0,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ filter: "blur(10px)" }}
                   />
-                  {/* Overlay */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent"
                     initial={{ opacity: 0.6 }}
@@ -321,7 +302,6 @@ const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Subtle Grain Overlay */}
       <div
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{

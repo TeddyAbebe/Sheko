@@ -7,30 +7,30 @@ import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
 const statsData = [
   {
     image: CoffeeFarmersSorting,
-    value: "72,980+",
-    label: "Cups of Coffee Served",
+    value: "29,225+",
+    label: "Tons of Coffee Produced Annually",
     alt: "Coffee farmers sorting beans",
-    heading: "Serving Joy in Every Cup",
+    heading: "Production Potential",
     description:
-      "We’ve brought the rich taste of our coffee to thousands, creating moments of joy with every sip.",
+      "The Sheko region has a production potential of 29,225 tonnes of coffee per year, showcasing the scale of our operations.",
   },
   {
     image: CoffeeFarmerEastAfrica,
-    value: "1,500+",
-    label: "Coffee Farmers Empowered",
+    value: "6,432+",
+    label: "Farmers Empowered",
     alt: "Coffee farmer in East Africa",
-    heading: "Empowering Communities",
+    heading: "Community Empowerment",
     description:
-      "Our programs provide training and resources to coffee farmers, fostering sustainable growth.",
+      "Our cooperative union, founded by 19 primary cooperatives and 6,432 farmers, supports sustainable coffee farming.",
   },
   {
     image: GreenCoffeeBeans,
-    value: "1,200+",
-    label: "Tons of Beans Harvested",
+    value: "95,000+",
+    label: "Hectares of Land",
     alt: "Green coffee beans",
-    heading: "From Farm to Table",
+    heading: "Sheko Region",
     description:
-      "We harvest the finest beans, ensuring quality from the farm to your cup.",
+      "Spanning 95,000 hectares, the Sheko region is ideal for growing Coffee Arabica, with half covered by dense forests.",
   },
 ];
 
@@ -48,7 +48,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Brewing Success with Every Bean
+          Sheko Amora Gedel Coffee Union
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

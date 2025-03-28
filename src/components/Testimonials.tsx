@@ -1,14 +1,13 @@
-// src/components/Testimonials.tsx
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Testimonials: React.FC = () => {
-  // Stats data with coffee-related content
+  // Stats data updated with provided content
   const stats = [
-    { value: 250, label: "Coffee Farms Partnered" },
-    { value: 1200, label: "Tons of Beans Roasted" },
-    { value: 5000, label: "Cups Brewed Daily" },
-    { value: 45, label: "Countries Served" },
+    { value: 29225, label: "Tons of Coffee Produced Annually" },
+    { value: 6432, label: "Farmers in Our Cooperative" },
+    { value: 95000, label: "Hectares in Sheko Region" },
+    { value: 3000, label: "Hectares of Amora Gedel Forest" },
   ];
 
   // State to trigger animations when section is in view
@@ -129,7 +128,7 @@ const Testimonials: React.FC = () => {
           duration: 2,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: delay,
+          delay,
         },
       },
     };
@@ -234,7 +233,7 @@ const Testimonials: React.FC = () => {
             className="font-handwritten text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-yellow-300 relative inline-block"
             variants={headingVariants}
           >
-            {"Coffee Lovers Speak".split("").map((char, index) => (
+            {"Our Impact in Sheko".split("").map((char, index) => (
               <motion.span key={index} variants={letterVariants}>
                 {char}
               </motion.span>

@@ -1,18 +1,15 @@
-// src/components/Products.tsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BeansAfrica from "../assets/beans_africa.jpg";
 import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
 import CoffeeFarmersSorting from "../assets/coffee_farmers_sorting_freshly.jpg";
 
-// Dark green background texture
 const backgroundTexture = "linear-gradient(135deg, #051712 0%, #14352e 100%)";
 
-// Descriptions for each image
 const imageDescriptions: { [key: string]: string } = {
-  [BeansAfrica]: "Pure Perfection",
-  [GreenCoffeeBeans]: "Freshly Harvested",
-  [CoffeeFarmersSorting]: "Hand-Sorted Quality",
+  [BeansAfrica]: "Quality Inspected",
+  [GreenCoffeeBeans]: "Sun-Dried Beans",
+  [CoffeeFarmersSorting]: "Hand-Harvested",
 };
 
 const Products: React.FC = () => {
@@ -22,7 +19,6 @@ const Products: React.FC = () => {
     { src: CoffeeFarmersSorting, alt: "Sorting beans", id: 2 },
   ]);
 
-  // Handle manual image swap on click
   const handleImageSwap = (clickedImage: string) => {
     const newStacked = stackedImages.map((img) =>
       img.src === clickedImage ? { ...img, src: heroImage } : img
@@ -31,7 +27,6 @@ const Products: React.FC = () => {
     setStackedImages(newStacked);
   };
 
-  // Automatic image swap every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       const nextImage = stackedImages[0].src;
@@ -41,12 +36,11 @@ const Products: React.FC = () => {
         .concat([{ ...stackedImages[0], src: heroImage }]);
       setHeroImage(nextImage);
       setStackedImages(newStacked);
-    }, 5000); // Swap every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [heroImage, stackedImages]);
 
-  // Animation variants for heading with letter-by-letter effect
   const headingVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,7 +56,6 @@ const Products: React.FC = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  // Underline animation
   const underlineVariants = {
     hidden: { width: 0 },
     visible: {
@@ -71,9 +64,8 @@ const Products: React.FC = () => {
     },
   };
 
-  // Hero image variants with slide transition
   const heroImageVariants = {
-    hidden: { opacity: 0, x: 100 }, // Slide in from right
+    hidden: { opacity: 0, x: 100 },
     visible: {
       opacity: 1,
       x: 0,
@@ -83,21 +75,20 @@ const Products: React.FC = () => {
       opacity: 0,
       x: -100,
       transition: { duration: 0.8, ease: "easeOut" },
-    }, // Slide out to left
+    },
   };
 
-  // Stacked card variants with explicit sideways slide and tilt
   const cardVariants = {
     hidden: {
       opacity: 0,
-      x: 200, // Start far off to the right
-      rotate: 15, // Initial tilt
+      x: 200,
+      rotate: 15,
     },
     visible: (i: number) => ({
       opacity: 1,
-      x: i === 0 ? -80 : 80, // Final positions
-      y: i === 0 ? 60 : -60, // Vertical spread
-      rotate: i === 0 ? -8 : 8, // Final tilt angles
+      x: i === 0 ? -80 : 80,
+      y: i === 0 ? 60 : -60,
+      rotate: i === 0 ? -8 : 8,
       transition: {
         duration: 0.8,
         ease: "easeOut",
@@ -112,14 +103,13 @@ const Products: React.FC = () => {
     },
     click: { scale: 0.95, transition: { duration: 0.2 } },
     swap: (i: number) => ({
-      x: i === 0 ? -80 : 80, // Maintain position during swap
+      x: i === 0 ? -80 : 80,
       y: i === 0 ? 60 : -60,
       opacity: 1,
       transition: { duration: 0.8, ease: "easeOut" },
     }),
   };
 
-  // Coffee bean particle variants
   const coffeeBeanVariants = {
     animate: {
       y: [0, -30, 0],
@@ -135,12 +125,12 @@ const Products: React.FC = () => {
 
   return (
     <section
+      id="products"
       className="py-16 relative overflow-hidden text-white"
       style={{
         background: backgroundTexture,
       }}
     >
-      {/* Floating Coffee Bean Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
@@ -159,9 +149,7 @@ const Products: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-8 lg:px-16 relative z-10">
-        {/* Layout with Padding */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-8">
-          {/* Left Side: Text */}
           <motion.div
             className="lg:w-1/2 flex flex-col items-start"
             initial="hidden"
@@ -172,7 +160,7 @@ const Products: React.FC = () => {
               className="font-handwritten text-4xl md:text-6xl font-bold mb-6 leading-tight relative"
               variants={headingVariants}
             >
-              {"Always Green & Clean".split("").map((char, index) => (
+              {"Certified Organic Quality".split("").map((char, index) => (
                 <motion.span key={index} variants={letterVariants}>
                   {char}
                 </motion.span>
@@ -183,19 +171,18 @@ const Products: React.FC = () => {
               />
             </motion.h2>
             <p className="text-gray-100 text-base md:text-lg max-w-md">
-              Our coffee beans are sourced with an obsession for purity and
-              sustainability, delivering a taste that’s as clean as nature
-              intended.
+              We ensure that the coffee we supply complies with quality
+              measurement standards, controlled by a team of professional
+              quality inspectors from harvest to storage. Our products are
+              certified organic.
             </p>
           </motion.div>
 
-          {/* Right Side: Hero Image with Stacked Cards */}
           <div className="lg:w-1/2 relative flex justify-start items-center">
-            {/* Hero Image with AnimatePresence for smooth transitions */}
             <AnimatePresence mode="wait">
               <motion.div
                 className="relative group w-full max-w-md lg:mr-12"
-                key={heroImage} // Key triggers animation on swap
+                key={heroImage}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -208,12 +195,10 @@ const Products: React.FC = () => {
                   alt="Featured product"
                   className="w-full h-96 object-cover rounded-3xl shadow-2xl"
                 />
-                {/* Glow Effect */}
                 <motion.div
                   className="absolute inset-0 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{ filter: "blur(12px)" }}
                 />
-                {/* Animated Overlay with Dynamic Text */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent rounded-3xl"
                   initial={{ opacity: 0.8 }}
@@ -226,13 +211,12 @@ const Products: React.FC = () => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   >
-                    {imageDescriptions[heroImage] || "Pure Perfection"}
+                    {imageDescriptions[heroImage] || "Quality Inspected"}
                   </motion.div>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Tilted Stacked Cards with Sideways Animation */}
             <motion.div
               className="absolute bottom-0 right-0 flex flex-col gap-6"
               initial="hidden"
@@ -247,7 +231,7 @@ const Products: React.FC = () => {
                   className="w-36 h-36 object-cover rounded-xl shadow-lg border-2 border-white/40 cursor-pointer hover:shadow-[0_0_20px_rgba(255,215,0,0.8)] transition-all duration-300"
                   variants={cardVariants}
                   custom={index}
-                  animate="swap" // Ensure smooth position update during auto-swap
+                  animate="swap"
                   whileHover="hover"
                   whileTap="click"
                   onClick={() => handleImageSwap(card.src)}
@@ -258,7 +242,6 @@ const Products: React.FC = () => {
         </div>
       </div>
 
-      {/* Subtle Grain Overlay */}
       <div
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{

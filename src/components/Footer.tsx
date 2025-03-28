@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
@@ -14,10 +13,11 @@ const Footer: React.FC = () => {
               About Sheko Coffee Union
             </h3>
             <p className="text-gray-200">
-              At Sheko Coffee Union, we source the finest coffee beans from
-              tropical rainforests, empower East African farmers, and honor the
-              Ethiopian coffee legacy. Our mission is to bring you the best
-              coffee while supporting sustainable farming communities.
+              Based in the southwest region of Ethiopia, in the Bench-Sheko
+              zone, Sheko wereda, the Sheko Amora Gedel Coffee Producers'
+              Cooperative Union was founded by 19 primary cooperatives and 6,432
+              farmers to sell coffee on the world market. We hold a certificate
+              guaranteeing that our products are organic.
             </p>
           </div>
 

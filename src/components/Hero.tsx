@@ -6,8 +6,6 @@ import Image1 from "../assets/the-tropical-rain-forest.jpg";
 import Image2 from "../assets/coffee-farmer-east-africa.jpeg";
 import Image3 from "../assets/Ethiopian-Coffee-Forest.jpg";
 import Image4 from "../assets/coffee_farmers_sorting_freshly.jpg";
-// Uncomment the line below if you have a video file
-// import HeroVideo from "../assets/HeroVideo.mp4";
 
 const Hero: React.FC = () => {
   const images = [Image1, Image2, Image3, Image4];
@@ -16,52 +14,42 @@ const Hero: React.FC = () => {
     {
       mainTitle: (
         <>
-          SOURCING FROM <br /> TROPICAL RAINFORESTS
+          SOURCING FROM <br /> SHEKO REGION
         </>
       ),
-      title: "Exploring the Tropical Rainforest",
+      title: "Where Coffee Originated",
       description:
-        "Discover the lush origins of our coffee beans in the heart of tropical rainforests, where nature and tradition blend seamlessly.",
+        "Our products come exclusively from the Sheko region, in the Bench-Sheko zone where coffee originated, spanning 95,000 hectares with ideal conditions for growing coffee.",
     },
     {
       mainTitle: (
         <>
-          EMPOWERING EAST <br /> AFRICAN FARMERS
+          AMORA GEDEL <br /> FOREST
         </>
       ),
-      title: "Empowering East African Farmers",
+      title: "Cradle of Coffee",
       description:
-        "Meet the dedicated coffee farmers of East Africa who cultivate the finest beans with care and passion.",
+        "The Amora Gedel forest, spanning 3,000 hectares, is unanimously considered the cradle of coffee, home to wild Arabica coffee species.",
     },
     {
       mainTitle: (
         <>
-          THE ETHIOPIAN <br /> COFFEE LEGACY
+          BENCH SHEKO <br /> BEAUTY
         </>
       ),
-      title: "The Ethiopian Coffee Legacy",
+      title: "Dense Primary Forests",
       description:
-        "Experience the rich heritage of Ethiopian coffee forests, the birthplace of coffee, where every bean tells a story.",
+        "The Bench Sheko region in the Sheko wereda district is covered in dense, verdant primary forests, with half of its 95,000 hectares being forest land.",
     },
     {
       mainTitle: (
         <>
-          SORTING THE <br /> FINEST BEANS
+          COFFEE ARABICA <br /> HERITAGE
         </>
       ),
-      title: "Sorting the Finest Beans",
+      title: "World’s Prized Crop",
       description:
-        "Witness the meticulous process of sorting freshly harvested coffee beans to ensure only the best make it to your cup.",
-    },
-    {
-      mainTitle: (
-        <>
-          FROM BEAN <br /> TO BREW
-        </>
-      ),
-      title: "A Journey from Bean to Brew",
-      description:
-        "Watch the journey of our coffee from the fields to your cup, crafted with love and innovation.",
+        "The Sheko region’s forests are home to Coffee Arabica, the world’s most prized crop, harvested with care by our cooperative union.",
     },
   ];
 
@@ -85,44 +73,26 @@ const Hero: React.FC = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
   };
 
-  const currentContent = useVideo
-    ? slideContent[slideContent.length - 1]
-    : slideContent[currentSlide];
+  const currentContent = slideContent[currentSlide];
 
   return (
     <section
       id="home"
       className="h-screen relative flex items-center justify-center"
     >
-      {useVideo ? (
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-      ) : (
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-1000"
-          style={{
-            backgroundImage: `url(${images[currentSlide]})`,
-          }}
-        />
-      )}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-1000"
+        style={{
+          backgroundImage: `url(${images[currentSlide]})`,
+        }}
+      />
 
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
       <div className="relative sm:ml-40 container mx-auto px-4 flex flex-col items-start justify-center h-full">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentSlide + (useVideo ? "video" : "")}
+            key={currentSlide}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}

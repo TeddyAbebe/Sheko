@@ -1,4 +1,3 @@
-// src/components/Nature.tsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Coffee1 from "../assets/Coffee1.jpg";
@@ -13,7 +12,6 @@ const Nature: React.FC = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-slide effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -47,6 +45,7 @@ const Nature: React.FC = () => {
 
   return (
     <section
+      id="nature"
       className="py-16 relative overflow-hidden"
       style={{
         backgroundImage: `url(${BackgroundImage})`,
@@ -55,7 +54,6 @@ const Nature: React.FC = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Blurred Overlay */}
       <div className="absolute inset-0 backdrop-blur-md bg-black/60"></div>
 
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8 relative z-10">
@@ -75,7 +73,6 @@ const Nature: React.FC = () => {
             />
           </AnimatePresence>
 
-          {/* Slide Indicators */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
             {images.map((_, index) => (
               <button
@@ -100,15 +97,16 @@ const Nature: React.FC = () => {
             className="font-handwritten text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
             variants={headingVariants}
           >
-            We Grow With The Wonderful Law Of Nature
+            The Amora Gedel Forest
           </motion.h2>
           <motion.p
             className="text-gray-200 text-base md:text-lg mb-6 max-w-md"
             variants={contentVariants}
           >
-            Discover how we nurture our coffee in harmony with nature, blending
-            tradition and sustainability to bring you the finest beans from the
-            earth to your cup.
+            The Amora Gedel forest in the Bench-Sheko area, spanning 3,000
+            hectares, is the cradle of coffee, home to wild Arabica coffee
+            species. The Sheko region’s 95,000 hectares, half covered by dense
+            forests, provide the perfect environment for growing coffee.
           </motion.p>
 
           <motion.div variants={contentVariants}>

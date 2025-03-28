@@ -1,4 +1,3 @@
-// src/components/Contact.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import Bench from "../assets/Bench.jpg";
@@ -88,7 +87,7 @@ const Contact: React.FC = () => {
               className="font-handwritten text-3xl sm:text-4xl md:text-5xl font-bold leading-tight relative mb-8"
               variants={headingVariants}
             >
-              {"Contact Us Today".split("").map((char, index) => (
+              {"Reach Out to Sheko Coffee".split("").map((char, index) => (
                 <motion.span key={index} variants={letterVariants}>
                   {char}
                 </motion.span>
@@ -98,6 +97,7 @@ const Contact: React.FC = () => {
                 variants={underlineVariants}
               />
             </motion.h2>
+
             <form className="space-y-6">
               <motion.input
                 type="text"
