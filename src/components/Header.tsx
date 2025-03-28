@@ -22,10 +22,42 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Track the active link based on URL hash or scroll position
+  // Track active section based on scroll position
   useEffect(() => {
-    const currentHash = window.location.hash || "#home";
-    setActiveLink(currentHash);
+    const sections = [
+      "#home",
+      "#about",
+      "#services",
+      "#nature",
+      "#products",
+      "#projects",
+      "#testimonials-section",
+      "#contact",
+    ];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+
+      for (const sectionId of sections) {
+        const section = document.querySelector(sectionId);
+        if (section) {
+          const { top, bottom } = section.getBoundingClientRect();
+          const sectionTop = top + window.scrollY;
+          const sectionBottom = bottom + window.scrollY;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            if (activeLink !== sectionId) {
+              setActiveLink(sectionId);
+              window.history.pushState(null, "", sectionId); // Update URL hash
+            }
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     const handleHashChange = () => {
       const newHash = window.location.hash || "#home";
@@ -34,9 +66,10 @@ const Header: React.FC = () => {
 
     window.addEventListener("hashchange", handleHashChange);
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("hashchange", handleHashChange);
     };
-  }, []);
+  }, [activeLink]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -54,24 +87,24 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#products", label: "Products" },
-    { href: "#nature", label: "Nature" },
-    { href: "#projects", label: "Projects" },
-    { href: "#testimonials-section", label: "Testimonials" },
-    { href: "#contact", label: "Contact" },
+    { href: "#about", label: "About Us" },
+    { href: "#services", label: "Our Services" },
+    { href: "#nature", label: "Sheko Nature" },
+    { href: "#products", label: "Our Coffee" },
+    { href: "#projects", label: "Coffee Journey" },
+    { href: "#testimonials-section", label: "Our Impact" },
+    { href: "#contact", label: "Get in Touch" },
   ];
 
   return (
     <header
-      className={`fixed w-full md:px-20 z-50 transition-all duration-300 ${
+      className={`fixed w-full md:px-10 z-50 transition-all duration-300 ${
         isScrolled ? "bg-black/50 backdrop-blur-[60px]" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo and Tagline */}
-        <div className="flex flex-col items-start ">
+        <div className="flex flex-col items-start">
           <a
             href="#home"
             className="flex items-center gap-2 text-white font-semibold"
@@ -95,7 +128,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Navigation Links (Desktop) */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-6">
           {navLinks.map((link) => (
             <a
               key={link.href}

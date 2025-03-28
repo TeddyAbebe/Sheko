@@ -190,21 +190,6 @@ const Testimonials: React.FC = () => {
         }}
       />
 
-      {/* Starry Sky Effect */}
-      <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.5 + 0.1,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Firefly Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 15 }).map((_, i) => (
@@ -250,7 +235,7 @@ const Testimonials: React.FC = () => {
         </motion.div>
 
         {/* Stats as Glowing Coffee Beans on Vines with Newton's Cradle Motion */}
-        <div className="relative flex flex-wrap justify-center items-start gap-8 sm:gap-12">
+        <div className="relative grid grid-cols-2 sm:grid-cols-4 justify-center items-start gap-y-8 sm:gap-y-0">
           {stats.map((stat, index) => (
             <div
               key={index}
