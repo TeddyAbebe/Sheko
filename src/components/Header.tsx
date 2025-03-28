@@ -71,7 +71,7 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo and Tagline */}
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start ">
           <a
             href="#home"
             className="flex items-center gap-2 text-white font-semibold"
@@ -85,11 +85,13 @@ const Header: React.FC = () => {
               alt="Sheko Coffee Union Logo"
               className="h-10 w-auto rounded-full"
             />
-            <span className="text-lg">Sheko Coffee Union</span>
+            <span>
+              <span className="text-lg">Sheko Coffee Union</span>
+              <p className="text-sm text-gray-300 font-handwritten">
+                From the Cradle of Coffee in Sheko
+              </p>
+            </span>
           </a>
-          <p className="text-sm text-gray-300">
-            From the Cradle of Coffee in Sheko
-          </p>
         </div>
 
         {/* Navigation Links (Desktop) */}
