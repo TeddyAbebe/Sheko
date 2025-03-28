@@ -83,19 +83,56 @@ const Testimonials: React.FC = () => {
     },
   };
 
-  // Firefly (glowing particle) effect
+  // Firefly (glowing particle) effect with enhanced glow
   const fireflyVariants = {
     animate: {
-      x: [0, 10, -10, 0],
-      y: [0, -15, 15, 0],
+      x: [0, 15, -15, 0],
+      y: [0, -20, 20, 0],
       opacity: [0, 1, 0],
-      scale: [1, 1.2, 1],
+      scale: [0.8, 1.5, 0.8],
+      boxShadow: [
+        "0 0 8px rgba(255, 215, 0, 0.8)",
+        "0 0 12px rgba(255, 215, 0, 1)",
+        "0 0 8px rgba(255, 215, 0, 0.8)",
+      ],
       transition: {
-        duration: Math.random() * 3 + 2,
+        duration: Math.random() * 4 + 2,
         repeat: Infinity,
         ease: "easeInOut",
       },
     },
+  };
+
+  // Coffee aroma mist effect rising from beans
+  const mistVariants = {
+    animate: {
+      y: [0, -40, -60],
+      opacity: [0.3, 0.5, 0],
+      scale: [1, 1.2, 0.8],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  // Newton's Cradle swinging motion for coffee beans
+  const swingVariants = (index: number, total: number) => {
+    // Outer beans swing more, inner beans swing less
+    const amplitude = index === 0 || index === total - 1 ? 15 : 5; // Larger swing for outer beans
+    const delay = index * 0.2; // Stagger the swing for a cradle effect
+    return {
+      animate: {
+        rotate: [-amplitude, amplitude, -amplitude],
+        transition: {
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: delay,
+        },
+      },
+    };
   };
 
   // Coffee bean stat animation and hover effect
@@ -112,13 +149,14 @@ const Testimonials: React.FC = () => {
       },
     }),
     hover: {
-      scale: 1.1,
-      boxShadow: "0 0 20px rgba(255, 215, 0, 0.7)",
+      scale: 1.15,
+      borderRadius: "20%", // Ensures circular shape on hover
+      boxShadow: "0 0 25px rgba(255, 215, 0, 0.9)",
       transition: { duration: 0.3 },
     },
   };
 
-  // Golden spark circle border animation
+  // Golden spark circle border animation with trailing effect
   const sparkCircleVariants = {
     hidden: { opacity: 0, scale: 0 },
     visible: {
@@ -153,6 +191,21 @@ const Testimonials: React.FC = () => {
         }}
       />
 
+      {/* Starry Sky Effect */}
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.5 + 0.1,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Firefly Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 15 }).map((_, i) => (
@@ -162,7 +215,6 @@ const Testimonials: React.FC = () => {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              boxShadow: "0 0 8px rgba(255, 215, 0, 0.8)",
             }}
             variants={fireflyVariants}
             animate="animate"
@@ -198,14 +250,14 @@ const Testimonials: React.FC = () => {
           </motion.h2>
         </motion.div>
 
-        {/* Stats as Glowing Coffee Beans on Vines */}
+        {/* Stats as Glowing Coffee Beans on Vines with Newton's Cradle Motion */}
         <div className="relative flex flex-wrap justify-center items-start gap-8 sm:gap-12">
           {stats.map((stat, index) => (
             <div
               key={index}
               className="relative flex flex-col items-center"
               style={{
-                width: "150px", // Fixed width for consistent spacing
+                width: "200px", // Increased width for consistent spacing with wider beans
               }}
             >
               {/* Vine */}
@@ -216,23 +268,26 @@ const Testimonials: React.FC = () => {
                 variants={vineVariants}
               />
 
-              {/* Coffee Bean Stat */}
+              {/* Coffee Bean Stat with Swinging Motion */}
               <motion.div
-                className="relative w-32 h-40 sm:w-36 rounded-full sm:h-44 flex flex-col justify-center items-center text-center"
+                className="relative w-40 h-40 sm:w-48 sm:h-44 flex flex-col justify-center items-center text-center origin-top"
                 initial="hidden"
-                animate={isVisible ? "visible" : "hidden"}
-                variants={coffeeBeanVariants}
+                animate={isVisible ? ["visible", "animate"] : "hidden"}
+                variants={{
+                  ...coffeeBeanVariants,
+                  ...swingVariants(index, stats.length),
+                }}
                 custom={index}
                 whileHover="hover"
               >
-                {/* Golden Spark Circle Border */}
+                {/* Golden Spark Circle Border with Trailing Effect */}
                 <motion.div
                   className="absolute inset-0 rounded-full border-4 border-transparent"
                   style={{
                     background:
                       "radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%)",
                     boxShadow: "0 0 15px rgba(255, 215, 0, 0.5)",
-                    clipPath: "ellipse(50% 50% at 50% 50%)", // Coffee bean shape
+                    clipPath: "ellipse(50% 40% at 50% 50%)", // Adjusted for wider coffee bean shape
                   }}
                   initial="hidden"
                   animate={isVisible ? "visible" : "hidden"}
@@ -248,7 +303,7 @@ const Testimonials: React.FC = () => {
                         left: "50%",
                         transform: `rotate(${
                           (i / 12) * 360
-                        }deg) translate(60px)`,
+                        }deg) translate(70px)`, // Adjusted translate distance for wider bean
                         boxShadow: "0 0 8px rgba(255, 215, 0, 0.8)",
                       }}
                       initial={{ opacity: 0, scale: 0 }}
@@ -260,28 +315,76 @@ const Testimonials: React.FC = () => {
                               transition: {
                                 duration: 2,
                                 ease: "easeOut",
-                                delay: (i / 12) * 2, // Staggered to form the circle
+                                delay: (i / 12) * 2,
                                 repeat: 0,
                               },
                             }
                           : {}
                       }
-                    />
+                    >
+                      {/* Trailing Effect */}
+                      <motion.div
+                        className="absolute w-4 h-1 bg-yellow-300/50 rounded-full"
+                        style={{
+                          transform: "rotate(90deg)",
+                          left: "-2px",
+                          top: "1px",
+                        }}
+                        initial={{ opacity: 0, scaleX: 0 }}
+                        animate={
+                          isVisible
+                            ? {
+                                opacity: [0, 0.5, 0],
+                                scaleX: [0, 1, 0],
+                                transition: {
+                                  duration: 2,
+                                  ease: "easeOut",
+                                  delay: (i / 12) * 2 + 0.1,
+                                  repeat: 0,
+                                },
+                              }
+                            : {}
+                        }
+                      />
+                    </motion.div>
                   ))}
                 </motion.div>
 
+                {/* Glowing Aura Around Coffee Bean */}
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%)",
+                    clipPath: "ellipse(50% 40% at 50% 50%)", // Adjusted for wider coffee bean shape
+                    boxShadow: "0 0 20px rgba(255, 215, 0, 0.4)",
+                  }}
+                />
+
                 {/* Coffee Bean Background */}
                 <div
-                  className="absolute inset-0 rounded-full bg-brown-800/80 backdrop-blur-md"
+                  className="absolute inset-0 rounded-full bg-brown-800/90 backdrop-blur-md"
                   style={{
-                    clipPath: "ellipse(50% 50% at 50% 50%)", // Coffee bean shape
-                    boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.5)", // Inner shadow for depth
+                    borderRadius: "50%",
                   }}
+                />
+
+                {/* Coffee Aroma Mist */}
+                <motion.div
+                  className="absolute -top-8 w-3 h-3 bg-yellow-300/20 rounded-full"
+                  variants={mistVariants}
+                  animate="animate"
+                />
+                <motion.div
+                  className="absolute -top-8 left-4 w-3 h-3 bg-yellow-300/20 rounded-full"
+                  variants={mistVariants}
+                  animate="animate"
+                  style={{ transitionDelay: "0.2s" }}
                 />
 
                 {/* Stat Number */}
                 <motion.h3
-                  className="relative text-2xl sm:text-3xl font-bold text-yellow-300 z-10"
+                  className="relative text-xl sm:text-2xl font-bold text-yellow-300 z-10"
                   style={{
                     textShadow: "0 2px 4px rgba(0, 0, 0, 0.5)", // 3D effect
                   }}
@@ -291,10 +394,12 @@ const Testimonials: React.FC = () => {
                 >
                   {stat.value.toLocaleString()}
                 </motion.h3>
-
                 {/* Stat Label */}
                 <motion.p
-                  className="relative text-white text-xs sm:text-sm mt-1 px-2 z-10"
+                  className="relative text-white text-[10px] sm:text-xs mt-1 px-4 z-10"
+                  style={{
+                    lineHeight: "1.2",
+                  }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isVisible ? 1 : 0 }}
                   transition={{ duration: 0.5, delay: index * 0.3 + 1.2 }}
