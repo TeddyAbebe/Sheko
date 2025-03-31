@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import BeansAfrica from "../assets/beans_africa.jpg";
 import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
 import FarmersInForest from "../assets/farmers_harvesting_in_forest.jpg";
-import ShekoRegion from "../assets/the-tropical-rain-forest.jpg"; // Example image for new section
-import CoffeeForest from "../assets/Ethiopian-Coffee-Forest.jpg"; // Additional image for new section
+import ShekoRegion from "../assets/the-tropical-rain-forest.jpg"; 
+import CoffeeForest from "../assets/Ethiopian-Coffee-Forest.jpg";
 
 const backgroundTexture = "linear-gradient(135deg, #051712 0%, #14352e 100%)";
 
