@@ -1,18 +1,19 @@
-import React from "react";
-import { motion } from "framer-motion";
-import CoffeeFarmersSorting from "../assets/coffee_farmers_sorting_freshly.jpg";
-import CoffeeFarmerEastAfrica from "../assets/coffee-farmer-east-africa.jpeg";
-import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import CoffeeFarmerEastAfrica from "../assets/farmers_harvesting_in_forest.jpg";
+import FarmersInForest from "../assets/coffee-farmer-east-africa.jpeg";
+import FarmLandScape from "../assets/FarmLandScape.jpg";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const statsData = [
   {
-    image: CoffeeFarmersSorting,
-    value: "29,225+",
+    image: FarmersInForest,
+    value: "12,000+",
     label: "Tons of Coffee Produced Annually",
-    alt: "Coffee farmers sorting beans",
+    alt: "Farmers harvesting in coffee forest",
     heading: "Production Potential",
     description:
-      "The Sheko region has a production potential of 29,225 tonnes of coffee per year, showcasing the scale of our operations.",
+      "The Sheko region has a production potential of 12,000 tonnes of coffee per year, showcasing the scale of our operations.",
   },
   {
     image: CoffeeFarmerEastAfrica,
@@ -24,7 +25,7 @@ const statsData = [
       "Our cooperative union, founded by 19 primary cooperatives and 6,432 farmers, supports sustainable coffee farming.",
   },
   {
-    image: GreenCoffeeBeans,
+    image: FarmLandScape,
     value: "95,000+",
     label: "Hectares of Land",
     alt: "Green coffee beans",
@@ -35,6 +36,23 @@ const statsData = [
 ];
 
 const About: React.FC = () => {
+  const [showMore, setShowMore] = useState(false);
+
+  // Variants for the additional content
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       id="about"
@@ -48,7 +66,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Sheko Amora Gedel Coffee Union
+          WHO ARE WE
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -99,6 +117,59 @@ const About: React.FC = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="flex items-center bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 shadow-md hover:shadow-lg mx-auto cursor-pointer"
+          >
+            {showMore ? "Show Less" : "Read More"}
+            <span className="ml-2 bg-white rounded-full p-2">
+              {showMore ? (
+                <IoIosArrowUp className="w-4 h-4 text-black group-hover:animate-bounce" />
+              ) : (
+                <IoIosArrowDown className="w-4 h-4 text-black group-hover:animate-bounce" />
+              )}
+            </span>
+          </button>
+
+          {/* Additional Content */}
+          <AnimatePresence>
+            {showMore && (
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={contentVariants}
+                className="mt-8 max-w-2xl mx-auto text-center"
+              >
+                <h3 className="font-handwritten text-2xl md:text-3xl font-bold text-green mb-4">
+                  HOW WAS OUR COMPANY FOUNDED
+                </h3>
+                <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-yellow-500">
+                  <p className="text-gray-800 text-base leading-relaxed text-justify">
+                    Prior to 2021, a farmers' cooperative called Bench Chaka
+                    Coffee Farmers Cooperative Union existed in the Bench-Sheko
+                    zone. Through this company, farmers could sell their product
+                    on the world market. Among the coffee cooperative suppliers,
+                    85% of production comes from the Sheko region. However, in
+                    2001, due to a management problem, the company was unable to
+                    progress. It eventually went bankrupt without paying the
+                    farmers money. Following this incident, the farmers and
+                    cooperatives in Sheko wereda (district) left the company the
+                    same year. The loss of the farmers, who account for 85% of
+                    coffee production in the Bench-Sheko area, was a major blow
+                    to the company. This incident paved the way for the creation
+                    of a new farmers' association in Sheko wereda
+                    (region/district). A year later, 19 primary cooperatives and
+                    6,443 farmers founded the new farmers' union: Yesheko Amora
+                    Gedel Coffee Farmers Cooperative Union.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

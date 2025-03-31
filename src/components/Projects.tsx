@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BackgroundImage from "../assets/GreenCoffee.jpg";
-import BeansAfrica from "../assets/beans_africa.jpg";
-import Coffee1 from "../assets/Coffee1.jpg";
-import Coffee2 from "../assets/Coffee2.jpg";
+import Sheko from "../assets/the-tropical-rain-forest.jpg";
+import Coffee4 from "../assets/Coffee4.jpg";
+import Processing from "../assets/BiyaFaris.jpg";
+import CoffeeDrying from "../assets/Image1.jpg";
 import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
 import EthiopianCoffeeForest from "../assets/Ethiopian-Coffee-Forest.jpg";
 
 const Projects: React.FC = () => {
   const projects = [
     {
-      src: BeansAfrica,
+      src: Sheko,
       alt: "Sheko region sourcing",
-      title: "Sheko Region Sourcing",
+      title: "WHERE DO WE SOURCE COFFE",
       description:
-        "Sourcing coffee exclusively from the Sheko region, spanning 95,000 hectares, where coffee originated.",
+        "Our products come exclusively from the Sheko region, in the Bench-Sheko zone where coffee originated. Annual coffee production in the region is about 12,000 tons.",
     },
     {
-      src: Coffee1,
+      src: Coffee4,
       alt: "Hand-harvesting",
       title: "Hand-Harvesting",
       description:
         "Farmers harvest only ripe fruit, ensuring the highest quality during the picking season.",
     },
     {
-      src: Coffee2,
+      src: CoffeeDrying,
       alt: "Sun-drying process",
       title: "Sun-Drying Process",
       description:
@@ -44,6 +45,13 @@ const Projects: React.FC = () => {
       description:
         "Harvesting wild Arabica coffee from the 3,000-hectare Amora Gedel forest, the cradle of coffee.",
     },
+    {
+      src: Processing,
+      alt: "Processing type",
+      title: "PROCESSING TYPE",
+      description:
+        "We ensure that the coffee we supply complies with quality measurement standards, controlled by a team of professional quality inspectors from harvest to storage.",
+    },
   ];
 
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -53,7 +61,7 @@ const Projects: React.FC = () => {
       setCurrentCardIndex((prevIndex) =>
         prevIndex === projects.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000);
+    }, 8000); // Slowed to 8 seconds
 
     return () => clearInterval(interval);
   }, [projects.length]);

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Testimonials: React.FC = () => {
-  // Stats data updated with provided content
+  // Stats data updated with string values
   const stats = [
-    { value: 29225, label: "Tons of Coffee Produced Annually" },
-    { value: 6432, label: "Farmers in Our Cooperative" },
-    { value: 95000, label: "Hectares in Sheko Region" },
-    { value: 3000, label: "Hectares of Amora Gedel Forest" },
+    { value: "12,000+", label: "Tons of Coffee Produced Annually" },
+    { value: "6,432", label: "Farmers in Our Cooperative" },
+    { value: "95,000", label: "Hectares in Sheko Region" },
+    { value: "3,000", label: "Hectares of Amora Gedel Forest" },
   ];
 
   // State to trigger animations when section is in view
@@ -118,7 +118,6 @@ const Testimonials: React.FC = () => {
 
   // Newton's Cradle swinging motion for coffee beans
   const swingVariants = (index: number, total: number) => {
-    // Outer beans swing more, inner beans swing less
     const amplitude = index === 0 || index === total - 1 ? 15 : 5; // Larger swing for outer beans
     const delay = index * 0.2; // Stagger the swing for a cradle effect
     return {
@@ -376,7 +375,7 @@ const Testimonials: React.FC = () => {
                   animate={{ opacity: isVisible ? 1 : 0 }}
                   transition={{ duration: 0.5, delay: index * 0.3 + 1 }}
                 >
-                  {stat.value.toLocaleString()}
+                  {stat.value} {/* Removed toLocaleString() */}
                 </motion.h3>
                 {/* Stat Label */}
                 <motion.p

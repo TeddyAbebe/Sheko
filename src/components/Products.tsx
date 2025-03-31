@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BeansAfrica from "../assets/beans_africa.jpg";
 import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
-import CoffeeFarmersSorting from "../assets/coffee_farmers_sorting_freshly.jpg";
+import FarmersInForest from "../assets/farmers_harvesting_in_forest.jpg";
 
 const backgroundTexture = "linear-gradient(135deg, #051712 0%, #14352e 100%)";
 
 const imageDescriptions: { [key: string]: string } = {
   [BeansAfrica]: "Quality Inspected",
   [GreenCoffeeBeans]: "Sun-Dried Beans",
-  [CoffeeFarmersSorting]: "Hand-Harvested",
+  [FarmersInForest]: "Hand-Harvested",
 };
 
 const Products: React.FC = () => {
   const [heroImage, setHeroImage] = useState(BeansAfrica);
   const [stackedImages, setStackedImages] = useState([
     { src: GreenCoffeeBeans, alt: "Green beans", id: 1 },
-    { src: CoffeeFarmersSorting, alt: "Sorting beans", id: 2 },
+    { src: FarmersInForest, alt: "Farmers in forest", id: 2 },
   ]);
 
   const handleImageSwap = (clickedImage: string) => {
@@ -36,7 +36,7 @@ const Products: React.FC = () => {
         .concat([{ ...stackedImages[0], src: heroImage }]);
       setHeroImage(nextImage);
       setStackedImages(newStacked);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [heroImage, stackedImages]);
@@ -176,6 +176,22 @@ const Products: React.FC = () => {
               quality inspectors from harvest to storage. Our products are
               certified organic.
             </p>
+            <div className="mt-4">
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                transition={{ duration: 0.5 }}
+                className="text-gray-100 mt-2"
+              >
+                <h3 className="font-handwritten text-xl font-semibold mb-2 text-yellow-500">
+                  WE HAVE CERTIFICATE !
+                </h3>
+                <p className="">
+                  We have a certificate guaranteeing that our products are
+                  organic.
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
 
           <div className="lg:w-1/2 relative flex justify-start items-center">

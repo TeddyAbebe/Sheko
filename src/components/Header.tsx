@@ -6,7 +6,6 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState<string>("#home");
 
-  // Handle scroll for header background
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -22,7 +21,6 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Track active section based on scroll position
   useEffect(() => {
     const sections = [
       "#home",
@@ -48,7 +46,7 @@ const Header: React.FC = () => {
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             if (activeLink !== sectionId) {
               setActiveLink(sectionId);
-              window.history.pushState(null, "", sectionId); // Update URL hash
+              window.history.pushState(null, "", sectionId);
             }
             break;
           }
@@ -75,13 +73,12 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Handle smooth scrolling to a section
   const scrollToSection = (sectionId: string) => {
     const section = document.querySelector(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
       setActiveLink(sectionId);
-      window.history.pushState(null, "", sectionId); // Update URL hash
+      window.history.pushState(null, "", sectionId);
     }
   };
 
@@ -103,7 +100,6 @@ const Header: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo and Tagline */}
         <div className="flex flex-col items-start">
           <a
             href="#home"
@@ -127,7 +123,6 @@ const Header: React.FC = () => {
           </a>
         </div>
 
-        {/* Navigation Links (Desktop) */}
         <nav className="hidden md:flex space-x-6">
           {navLinks.map((link) => (
             <a
@@ -149,7 +144,6 @@ const Header: React.FC = () => {
           ))}
         </nav>
 
-        {/* Hamburger Menu (Mobile) */}
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={toggleMobileMenu}
@@ -175,7 +169,6 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`md:hidden ${
           isMobileMenuOpen ? "block" : "hidden"

@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Coffee1 from "../assets/Coffee1.jpg";
-import Coffee2 from "../assets/Coffee2.jpg";
-import Coffee3 from "../assets/Coffee3.jpg";
-import Coffee5 from "../assets/Coffee5.jpg";
-import Coffee6 from "../assets/Coffee6.jpg";
+import Nature1 from "../assets/Ethiopian-Coffee-Forest.jpg";
+import Nature2 from "../assets/FarmLandScape.jpg";
+import Nature3 from "../assets/Panos.jpg";
 import BackgroundImage from "../assets/coffee-farmer-east-africa.jpeg";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const Nature: React.FC = () => {
-  const images = [Coffee1, Coffee2, Coffee3, Coffee5, Coffee6];
-
+  const images = [Nature1, Nature2, Nature3];
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -41,6 +40,24 @@ const Nature: React.FC = () => {
     enter: { opacity: 0, x: 50 },
     center: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -50 },
+  };
+
+  const additionalContentVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const toggleLearnMore = () => {
+    setShowMore(!showMore);
   };
 
   return (
@@ -97,7 +114,7 @@ const Nature: React.FC = () => {
             className="font-handwritten text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
             variants={headingVariants}
           >
-            The Amora Gedel Forest
+            THE AMORA GEDEL FOREST SITE
           </motion.h2>
           <motion.p
             className="text-gray-200 text-base md:text-lg mb-6 max-w-md"
@@ -109,24 +126,42 @@ const Nature: React.FC = () => {
             forests, provide the perfect environment for growing coffee.
           </motion.p>
 
+          {/* Additional Content Section with AnimatePresence */}
+          <AnimatePresence>
+            {showMore && (
+              <motion.div
+                key="additional-content"
+                variants={additionalContentVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="text-gray-200 text-base md:text-lg mb-6 max-w-md"
+              >
+                <p>
+                  The true birthplace of coffee in Ethiopia remained an enigma
+                  until research by the University of Hudersfield confirmed that
+                  the Amora Gedel forest is the cradle of coffee. It’s home to
+                  wild Arabica coffee species of varying genetic composition.
+                  Being largely inaccessible, only those with regional
+                  administration permission can harvest here during the coffee
+                  season.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <motion.div variants={contentVariants}>
-            <button className="flex items-center cursor-pointer bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 shadow-md hover:shadow-lg">
-              Learn More
+            <button
+              onClick={toggleLearnMore}
+              className="flex items-center cursor-pointer group bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              {showMore ? "Show Less" : "Learn More"}
               <span className="ml-2 bg-white rounded-full p-2">
-                <svg
-                  className="w-4 h-4 text-black"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+                {showMore ? (
+                  <IoIosArrowUp className="w-4 h-4 text-black group-hover:animate-bounce" />
+                ) : (
+                  <IoIosArrowDown className="w-4 h-4 text-black group-hover:animate-bounce" />
+                )}
               </span>
             </button>
           </motion.div>

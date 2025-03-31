@@ -9,6 +9,7 @@ import Projects from "./components/Projects";
 import Testimonials from "./components/Testimonials";
 import ContactFooterWrapper from "./components/ContactFooterWrapper";
 import { IoIosArrowUp } from "react-icons/io";
+import Geography from "./components/Geography";
 
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -40,6 +41,7 @@ const App: React.FC = () => {
       <About />
       <Services />
       <Nature />
+      <Geography />
       <Products />
       <Projects />
       <Testimonials />

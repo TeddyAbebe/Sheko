@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { IoArrowRedoOutline, IoArrowUndoOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import Image1 from "../assets/the-tropical-rain-forest.jpg";
 import Image2 from "../assets/coffee-farmer-east-africa.jpeg";
 import Image3 from "../assets/Ethiopian-Coffee-Forest.jpg";
 import Image4 from "../assets/coffee_farmers_sorting_freshly.jpg";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Hero: React.FC = () => {
   const images = [Image1, Image2, Image3, Image4];
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
     if (!useVideo) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % images.length);
-      }, 5000);
+      }, 8000);
       return () => clearInterval(interval);
     }
   }, [useVideo, images.length]);
@@ -71,6 +71,14 @@ const Hero: React.FC = () => {
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
+  };
+
+  // Function to scroll to the next section
+  const scrollToNextSection = () => {
+    const nextSection = document.querySelector("#about");
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const currentContent = slideContent[currentSlide];
@@ -110,28 +118,16 @@ const Hero: React.FC = () => {
           </motion.div>
         </AnimatePresence>
 
-        <Link
-          to=""
-          className="flex items-center bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 shadow-md hover:shadow-lg"
+        {/* Replaced Link with button for scrolling */}
+        <button
+          onClick={scrollToNextSection}
+          className="flex items-center cursor-pointer group bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 shadow-md hover:shadow-lg"
         >
-          Discover Our Coffee
+          Discover Sheko
           <span className="ml-2 bg-white rounded-full p-2">
-            <svg
-              className="w-4 h-4 text-black"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+            <IoIosArrowDown className="group-hover:animate-bounce" />
           </span>
-        </Link>
+        </button>
       </div>
 
       {!useVideo && (
