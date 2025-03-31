@@ -1,56 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BackgroundImage from "../assets/GreenCoffee.jpg";
-import Sheko from "../assets/the-tropical-rain-forest.jpg";
 import Coffee4 from "../assets/Coffee4.jpg";
-import Processing from "../assets/BiyaFaris.jpg";
 import CoffeeDrying from "../assets/Image1.jpg";
 import GreenCoffeeBeans from "../assets/Green_Coffee_Beans_Svetol.jpg";
-import EthiopianCoffeeForest from "../assets/Ethiopian-Coffee-Forest.jpg";
+import FarmerSupport from "../assets/beans_africa.jpg";
+import Packaging from "../assets/Packaging.jpg";
 
 const Projects: React.FC = () => {
   const projects = [
     {
-      src: Sheko,
-      alt: "Sheko region sourcing",
-      title: "WHERE DO WE SOURCE COFFE",
+      src: Coffee4,
+      alt: "Harvesting season",
+      title: "HARVESTING SEASON",
       description:
-        "Our products come exclusively from the Sheko region, in the Bench-Sheko zone where coffee originated. Annual coffee production in the region is about 12,000 tons.",
+        "Farmers harvest only ripe fruit during the picking season, marking the first stage of quality measurement.",
     },
     {
-      src: Coffee4,
-      alt: "Hand-harvesting",
-      title: "Hand-Harvesting",
+      src: GreenCoffeeBeans,
+      alt: "Quality sorting",
+      title: "QUALITY SORTING",
       description:
-        "Farmers harvest only ripe fruit, ensuring the highest quality during the picking season.",
+        "Quality inspectors sort harvested cherries, separating ripe, healthy ones from immature or unhealthy ones.",
     },
     {
       src: CoffeeDrying,
       alt: "Sun-drying process",
-      title: "Sun-Drying Process",
+      title: "SUN-DRYING",
       description:
-        "Harvested coffees are sun-dried on 1m-high beds until the moisture content reaches 10-12%.",
+        "Cherries are sun-dried on 1m-high beds until moisture content reaches 10-12%, ensuring quality.",
     },
     {
-      src: GreenCoffeeBeans,
-      alt: "Quality inspection",
-      title: "Quality Inspection",
+      src: Packaging,
+      alt: "Packaging & storage",
+      title: "PACKAGING & STORAGE",
       description:
-        "Professional quality inspectors sort ripe, healthy cherries from immature ones.",
+        "Coffee is packaged and stored under strict quality standards, monitored by professional inspectors.",
     },
     {
-      src: EthiopianCoffeeForest,
-      alt: "Amora Gedel forest",
-      title: "Amora Gedel Forest",
+      src: FarmerSupport,
+      alt: "Farmer support",
+      title: "FARMER SUPPORT",
       description:
-        "Harvesting wild Arabica coffee from the 3,000-hectare Amora Gedel forest, the cradle of coffee.",
-    },
-    {
-      src: Processing,
-      alt: "Processing type",
-      title: "PROCESSING TYPE",
-      description:
-        "We ensure that the coffee we supply complies with quality measurement standards, controlled by a team of professional quality inspectors from harvest to storage.",
+        "We provide farmers with drying beds, gloves, masks, and training to maintain quality standards.",
     },
   ];
 
@@ -61,19 +53,14 @@ const Projects: React.FC = () => {
       setCurrentCardIndex((prevIndex) =>
         prevIndex === projects.length - 1 ? 0 : prevIndex + 1
       );
-    }, 8000); // Slowed to 8 seconds
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [projects.length]);
 
   const headingVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
   };
 
   const letterVariants = {
@@ -90,31 +77,14 @@ const Projects: React.FC = () => {
   };
 
   const cardVariants = {
-    hidden: {
-      opacity: 0,
-      x: 200,
-      rotate: 10,
-    },
-    visible: (i: number) => {
-      const totalCards = projects.length;
-      const centerIndex = Math.floor(totalCards / 2);
-      const maxSpread = 50;
-      const verticalSpread = 20;
-
-      const tilts = [-10, 8, -12, 10, -8];
-
-      return {
-        opacity: 1,
-        x: (i - centerIndex) * maxSpread,
-        y: (i % 2 === 0 ? -1 : 1) * verticalSpread,
-        rotate: tilts[i] || 0,
-        transition: {
-          duration: 0.8,
-          ease: "easeOut",
-          delay: i * 0.15,
-        },
-      };
-    },
+    hidden: { opacity: 0, x: 200, rotate: 10 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: (i - Math.floor(projects.length / 2)) * 50,
+      y: (i % 2 === 0 ? -1 : 1) * 20,
+      rotate: [-10, 8, -12, 10, -8][i] || 0,
+      transition: { duration: 0.8, ease: "easeOut", delay: i * 0.15 },
+    }),
     hover: {
       scale: 1.05,
       rotate: 0,
@@ -134,19 +104,6 @@ const Projects: React.FC = () => {
       opacity: 0,
       x: -100,
       transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const dotVariants = {
-    active: {
-      scale: 1.2,
-      backgroundColor: "#FFD700",
-      transition: { duration: 0.3 },
-    },
-    inactive: {
-      scale: 1,
-      backgroundColor: "#FFFFFF",
-      transition: { duration: 0.3 },
     },
   };
 
@@ -204,7 +161,7 @@ const Projects: React.FC = () => {
             className="font-handwritten text-3xl sm:text-4xl md:text-5xl font-bold leading-tight relative inline-block"
             variants={headingVariants}
           >
-            {"Our Coffee Journey".split("").map((char, index) => (
+            {"Processing Type".split("").map((char, index) => (
               <motion.span key={index} variants={letterVariants}>
                 {char}
               </motion.span>
@@ -217,6 +174,7 @@ const Projects: React.FC = () => {
         </motion.div>
 
         <div className="relative flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] px-4 py-6">
+          {/* Mobile View */}
           <div className="sm:hidden w-full flex flex-col items-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -254,19 +212,9 @@ const Projects: React.FC = () => {
                 </div>
               </motion.div>
             </AnimatePresence>
-
-            <div className="flex gap-2 mt-4">
-              {projects.map((_, index) => (
-                <motion.div
-                  key={index}
-                  className="w-3 h-3 rounded-full"
-                  variants={dotVariants}
-                  animate={index === currentCardIndex ? "active" : "inactive"}
-                />
-              ))}
-            </div>
           </div>
 
+          {/* Desktop View */}
           <div className="hidden sm:flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8">
             {projects.map((project, index) => (
               <motion.div
