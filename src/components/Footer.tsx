@@ -32,19 +32,11 @@ const Footer: React.FC = () => {
                 href="mailto:export@shekocoffeeunion.com"
                 className="text-yellow-400 hover:text-yellow-500 transition-colors duration-300"
               >
-                export@shekocoffeeunion.com
+                kalkidanshekocoffee@gmail.com
               </a>
             </p>
-            <p className="text-gray-300">
-              General Inquiries:{" "}
-              <a
-                href="mailto:contact@shekocoffeeunion.com"
-                className="text-yellow-400 hover:text-yellow-500 transition-colors duration-300"
-              >
-                contact@shekocoffeeunion.com
-              </a>
-            </p>
-            <p className="text-gray-300">Phone: +251 912 345 678</p>
+
+            <p className="text-gray-300">Phone: +251913140936</p>
           </div>
 
           {/* Social Media */}
