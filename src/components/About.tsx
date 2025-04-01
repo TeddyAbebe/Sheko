@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import CoffeeFarmerEastAfrica from "../assets/farmers_harvesting_in_forest.jpg";
 import FarmersInForest from "../assets/coffee-farmer-east-africa.jpeg";
 import FarmLandScape from "../assets/FarmLandScape.jpg";
+import CoffeeBeanIcon from "../assets/CoffeeBean.svg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const statsData = [
@@ -90,27 +91,18 @@ const About: React.FC = () => {
                   <div className="w-10 h-1 bg-yellow-400 mt-1"></div>
                 </motion.div>
 
-                <motion.div className="opacity-0 transition-opacity duration-500 group-hover:opacity-100 flex flex-col mt-4">
+                <motion.div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col mt-4">
                   <h4 className="text-xl font-semibold mb-2">{stat.heading}</h4>
                   <p className="text-sm text-gray-200 mb-4">
                     {stat.description}
                   </p>
                   <div className="flex justify-end">
-                    <button className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-4 h-4 text-white font-extrabold"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
+                    <button className="p-2 bg-yellow-100/20 rounded-full flex items-center justify-center">
+                      <img
+                        src={CoffeeBeanIcon}
+                        alt="Coffee Bean"
+                        className="w-10 h-10 text-white"
+                      />
                     </button>
                   </div>
                 </motion.div>
